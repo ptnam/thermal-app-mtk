@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
-import 'package:flutter_vision/core/logger/app_logger.dart';
-import 'package:flutter_vision/domain/entities/notification.dart';
-import 'package:flutter_vision/domain/usecase/notification_usecase.dart';
+import 'package:camera_viewer/core/logger/app_logger.dart';
+import 'package:camera_viewer/domain/entities/notification.dart';
+import 'package:camera_viewer/domain/usecase/notification_usecase.dart';
 
 part 'notification_event.dart';
 part 'notification_state.dart';

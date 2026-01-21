@@ -1,7 +1,7 @@
-import 'package:flutter_vision/presentation/ui/camera/camera_page.dart';
-import 'package:flutter_vision/presentation/ui/notification/notification_list_page.dart';
-import 'package:flutter_vision/presentation/ui/setting/setting_page.dart';
-import 'package:flutter_vision/presentation/ui/setting/api_test_page.dart';
+import 'package:camera_viewer/presentation/ui/camera/camera_page.dart';
+import 'package:camera_viewer/presentation/ui/notification/notification_list_page.dart';
+import 'package:camera_viewer/presentation/ui/setting/setting_page.dart';
+import 'package:camera_viewer/presentation/ui/setting/api_test_page.dart';
 
 class AppRoutes {
   static const camera = '/camera';

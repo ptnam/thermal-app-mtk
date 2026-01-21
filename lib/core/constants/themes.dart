@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_vision/core/constants/colors.dart';
+import 'package:camera_viewer/core/constants/colors.dart';
 
 class AppTheme {
   static ThemeData lightTheme = ThemeData(
@@ -52,7 +52,7 @@ class AppTheme {
     //   onSurface: AppColors.grey_2,
     //   onSurfaceVariant: AppColors.blackPrimary,
     // ),
-    scaffoldBackgroundColor: AppColors.backgroundDark,
+    scaffoldBackgroundColor: AppColors.white,
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(
       selectedItemColor: AppColors.primaryDark,
       unselectedItemColor: AppColors.text,

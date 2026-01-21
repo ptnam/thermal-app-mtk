@@ -1,4 +1,4 @@
-# flutter_vision
+# camera_viewer
 
 A new Flutter project.
 

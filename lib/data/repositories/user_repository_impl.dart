@@ -9,7 +9,7 @@
 /// =============================================================================
 
 import 'package:dartz/dartz.dart';
-import 'package:flutter_vision/data/network/core/base_dto.dart';
+import 'package:camera_viewer/data/network/core/base_dto.dart';
 
 import '../../domain/entities/user_entity.dart';
 import '../../domain/repositories/user_repository.dart';

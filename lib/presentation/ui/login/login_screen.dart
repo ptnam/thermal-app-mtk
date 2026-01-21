@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_vision/core/constants/colors.dart';
-import 'package:flutter_vision/core/constants/icons.dart';
-import 'package:flutter_vision/core/constants/strings.dart';
-import 'package:flutter_vision/presentation/navigation/main_shell.dart';
+import 'package:camera_viewer/core/constants/icons.dart';
+import 'package:camera_viewer/core/constants/strings.dart';
+import 'package:camera_viewer/presentation/navigation/main_shell.dart';
 import '../../../domain/repositories/auth_repository.dart';
 import '../../../core/error/error_mapper.dart';
 import '../../../di/injection.dart';
@@ -81,132 +80,7 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   title: const Text('Đăng nhập'),
-      //   elevation: 0,
-      //   centerTitle: true,
-      // ),
-      // body: Stack(
-      //   children: [
-      //     // Stack(
-      //     //   children: [
-      //     //     Image.asset(
-      //     //       'assets/imgs/login_background.avif',
-      //     //       fit: BoxFit.cover,
-      //     //       width: double.infinity,
-      //     //       height: double.infinity,
-      //     //     ),
-      //     //     Container(color: Colors.blue.withOpacity(0.2)),
-      //     //   ],
-      //     // ),
-
-      //     // SingleChildScrollView(
-      //     //   child: Padding(
-      //     //     padding: const EdgeInsets.symmetric(
-      //     //       horizontal: 24.0,
-      //     //       vertical: 32.0,
-      //     //     ),
-      //     //     child: Column(
-      //     //       crossAxisAlignment: CrossAxisAlignment.stretch,
-      //     //       children: [
-      //     //         Logo(),
-      //     //         // Title
-      //     //         Text(
-      //     //           'Camera Vision',
-      //     //           style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-      //     //             fontWeight: FontWeight.bold,
-      //     //           ),
-      //     //           textAlign: TextAlign.center,
-      //     //         ),
-      //     //         const SizedBox(height: 8),
-
-      //     //         // Subtitle
-      //     //         Text(
-      //     //           'Hệ thống quản lý camera thông minh',
-      //     //           style: Theme.of(
-      //     //             context,
-      //     //           ).textTheme.bodyMedium?.copyWith(color: Colors.grey[600]),
-      //     //           textAlign: TextAlign.center,
-      //     //         ),
-      //     //         const SizedBox(height: 40),
-
-      //     //         // Username field
-      //     //         TextFormField(
-      //     //           controller: _usernameController,
-      //     //           enabled: !_loading,
-      //     //           decoration: InputDecoration(
-      //     //             labelText: 'Tên đăng nhập',
-      //     //             hintText: 'Nhập tên đăng nhập',
-      //     //             prefixIcon: const Icon(Icons.person_outline),
-      //     //             border: OutlineInputBorder(
-      //     //               borderRadius: BorderRadius.circular(12),
-      //     //             ),
-      //     //             contentPadding: const EdgeInsets.symmetric(
-      //     //               horizontal: 16,
-      //     //               vertical: 16,
-      //     //             ),
-      //     //           ),
-      //     //         ),
-      //     //         const SizedBox(height: 16),
-
-      //     //         // Password field
-      //     //         TextFormField(
-      //     //           controller: _passwordController,
-      //     //           enabled: !_loading,
-      //     //           obscureText: !_showPassword,
-      //     //           decoration: InputDecoration(
-      //     //             labelText: 'Mật khẩu',
-      //     //             hintText: 'Nhập mật khẩu',
-      //     //             prefixIcon: const Icon(Icons.lock_outline),
-      //     //             suffixIcon: IconButton(
-      //     //               icon: Icon(
-      //     //                 _showPassword
-      //     //                     ? Icons.visibility
-      //     //                     : Icons.visibility_off,
-      //     //               ),
-      //     //               onPressed: () {
-      //     //                 setState(() => _showPassword = !_showPassword);
-      //     //               },
-      //     //             ),
-      //     //             border: OutlineInputBorder(
-      //     //               borderRadius: BorderRadius.circular(12),
-      //     //             ),
-      //     //             contentPadding: const EdgeInsets.symmetric(
-      //     //               horizontal: 16,
-      //     //               vertical: 16,
-      //     //             ),
-      //     //           ),
-      //     //         ),
-      //     //         const SizedBox(height: 24),
-
-      //     //         // Login button
-      //     //         FilledButton(
-      //     //           onPressed: (_loading || !_isFormValid) ? null : _doLogin,
-      //     //           style: FilledButton.styleFrom(
-      //     //             padding: const EdgeInsets.symmetric(vertical: 16),
-      //     //             shape: RoundedRectangleBorder(
-      //     //               borderRadius: BorderRadius.circular(12),
-      //     //             ),
-      //     //           ),
-      //     //           child: _loading
-      //     //               ? const SizedBox(
-      //     //                   height: 20,
-      //     //                   width: 20,
-      //     //                   child: CircularProgressIndicator(
-      //     //                     strokeWidth: 2,
-      //     //                     valueColor: AlwaysStoppedAnimation<Color>(
-      //     //                       Colors.white,
-      //     //                     ),
-      //     //                   ),
-      //     //                 )
-      //     //               : const Text('Đăng nhập'),
-      //     //         ),
-      //     //       ],
-      //     //     ),
-      //     //   ),
-      //     // ),
-      //   ],
-      // ),
+      backgroundColor: const Color(0xFFF8FAFC),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         mainAxisSize: MainAxisSize.max,
@@ -216,23 +90,19 @@ class _LoginScreenState extends State<LoginScreen> {
             children: [
               Column(
                 children: [
-                  Image.asset(
-                    AppIcons.icApp,
-                    width: 120,
-                    height: 120,
-                  ),
+                  Image.asset(AppIcons.icApp, width: 120, height: 120),
                   SizedBox(height: 16),
                   Text(
                     "IFS - AI",
                     style: TextStyle(
                       fontSize: 32,
                       fontWeight: FontWeight.bold,
-                      color: Colors.white,
+                      color: Color(0xFF1E293B),
                     ),
                   ),
                   Text(
                     'Phần mềm Camera thông minh',
-                    style: TextStyle(fontSize: 16, color: Colors.white),
+                    style: TextStyle(fontSize: 16, color: Colors.grey.shade600),
                   ),
                 ],
               ),
@@ -253,20 +123,23 @@ class _LoginScreenState extends State<LoginScreen> {
                         TextFormField(
                           controller: _usernameController,
                           enabled: !_loading,
-                          style: const TextStyle(color: Colors.white),
+                          style: const TextStyle(color: Color(0xFF1E293B)),
                           cursorColor: Colors.blue,
                           decoration: InputDecoration(
                             labelText: 'Tên đăng nhập',
-                            labelStyle: TextStyle(color: Colors.white.withOpacity(0.7)),
+                            labelStyle: TextStyle(color: Colors.grey.shade600),
                             hintText: 'Nhập tên đăng nhập',
-                            hintStyle: TextStyle(color: Colors.white.withOpacity(0.5)),
-                            prefixIcon: Icon(Icons.person_outline, color: Colors.white.withOpacity(0.7)),
+                            hintStyle: TextStyle(color: Colors.grey.shade400),
+                            prefixIcon: Icon(
+                              Icons.person_outline,
+                              color: Colors.grey.shade600,
+                            ),
                             filled: true,
-                            fillColor: Colors.white.withOpacity(0.1),
+                            fillColor: Colors.white,
                             enabledBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(12),
                               borderSide: BorderSide(
-                                color: Colors.white.withOpacity(0.3),
+                                color: Colors.grey.shade300,
                                 width: 1,
                               ),
                             ),
@@ -280,7 +153,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             disabledBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(12),
                               borderSide: BorderSide(
-                                color: Colors.grey.withOpacity(0.3),
+                                color: Colors.grey.shade200,
                                 width: 1,
                               ),
                             ),
@@ -300,31 +173,34 @@ class _LoginScreenState extends State<LoginScreen> {
                           controller: _passwordController,
                           enabled: !_loading,
                           obscureText: !_showPassword,
-                          style: const TextStyle(color: Colors.white),
+                          style: const TextStyle(color: Color(0xFF1E293B)),
                           cursorColor: Colors.blue,
                           decoration: InputDecoration(
                             labelText: 'Mật khẩu',
-                            labelStyle: TextStyle(color: Colors.white.withOpacity(0.7)),
+                            labelStyle: TextStyle(color: Colors.grey.shade600),
                             hintText: 'Nhập mật khẩu',
-                            hintStyle: TextStyle(color: Colors.white.withOpacity(0.5)),
-                            prefixIcon: Icon(Icons.lock_outline, color: Colors.white.withOpacity(0.7)),
+                            hintStyle: TextStyle(color: Colors.grey.shade400),
+                            prefixIcon: Icon(
+                              Icons.lock_outline,
+                              color: Colors.grey.shade600,
+                            ),
                             suffixIcon: IconButton(
                               icon: Icon(
                                 _showPassword
                                     ? Icons.visibility
                                     : Icons.visibility_off,
-                                color: Colors.white.withOpacity(0.7),
+                                color: Colors.grey.shade600,
                               ),
                               onPressed: () {
                                 setState(() => _showPassword = !_showPassword);
                               },
                             ),
                             filled: true,
-                            fillColor: Colors.white.withOpacity(0.1),
+                            fillColor: Colors.white,
                             enabledBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(12),
                               borderSide: BorderSide(
-                                color: Colors.white.withOpacity(0.3),
+                                color: Colors.grey.shade300,
                                 width: 1,
                               ),
                             ),
@@ -338,7 +214,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             disabledBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(12),
                               borderSide: BorderSide(
-                                color: Colors.grey.withOpacity(0.3),
+                                color: Colors.grey.shade200,
                                 width: 1,
                               ),
                             ),
@@ -357,7 +233,9 @@ class _LoginScreenState extends State<LoginScreen> {
                             borderRadius: BorderRadius.circular(12),
                             boxShadow: [
                               BoxShadow(
-                                color: const Color(0xFF0088FF).withOpacity(0.20),
+                                color: const Color(
+                                  0xFF0088FF,
+                                ).withOpacity(0.20),
                                 blurRadius: 4,
                                 spreadRadius: 2,
                                 offset: const Offset(0, 4),
@@ -370,8 +248,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                 : _doLogin,
                             style: FilledButton.styleFrom(
                               padding: const EdgeInsets.symmetric(vertical: 16),
-                              backgroundColor: const Color(0xFF377CF4).withOpacity(0.4),
-                              disabledBackgroundColor: Colors.grey.withOpacity(0.3),
+                              backgroundColor: const Color(0xFF0088FF),
+                              disabledBackgroundColor: Colors.grey.shade300,
                               elevation: 0,
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(12),
@@ -388,7 +266,13 @@ class _LoginScreenState extends State<LoginScreen> {
                                       ),
                                     ),
                                   )
-                                : const Text('Đăng nhập', style: TextStyle(color: Colors.white, fontWeight: FontWeight.w700),),
+                                : const Text(
+                                    'Đăng nhập',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.w700,
+                                    ),
+                                  ),
                           ),
                         ),
                         const SizedBox(height: 32),
@@ -399,7 +283,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               child: Text(
                                 AppStrings.version,
                                 textAlign: TextAlign.center,
-                                style: TextStyle(color: AppColors.text),
+                                style: TextStyle(color: Colors.grey.shade600),
                               ),
                             ),
                             const SizedBox(width: 4),
@@ -407,7 +291,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               child: Text(
                                 AppStrings.copyRight,
                                 textAlign: TextAlign.center,
-                                style: TextStyle(color: AppColors.text),
+                                style: TextStyle(color: Colors.grey.shade600),
                               ),
                             ),
                           ],

@@ -3,12 +3,14 @@ import 'package:dio/io.dart';
 import 'package:flutter/foundation.dart' show kDebugMode;
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get_it/get_it.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:io';
 
 import '../core/config/app_config.dart';
 import '../core/logger/app_logger.dart';
 import '../data/local/storage/secure_token_storage.dart';
 import '../data/local/storage/token_cache_secure.dart';
+import '../data/local/area_preferences.dart';
 
 // API Services
 import '../data/network/core/api_client.dart';
@@ -60,6 +62,7 @@ import '../domain/usecase/notification_usecase.dart';
 
 // BLoCs
 import '../presentation/bloc/area/area_bloc.dart';
+import '../presentation/bloc/area_selection/area_selection_bloc.dart';
 import '../presentation/bloc/camera/camera_stream_bloc.dart';
 import '../presentation/bloc/notification/notification_bloc.dart';
 import '../presentation/bloc/user/user_bloc.dart';
@@ -71,11 +74,29 @@ import '../presentation/bloc/thermal_data/thermal_data_bloc.dart';
 final GetIt getIt = GetIt.instance;
 
 Future<void> configureDependencies() async {
-  if (!getIt.isRegistered<bool>(instanceName: 'initialized')) {
-    getIt.registerSingleton<bool>(true, instanceName: 'initialized');
-  } else {
+  // Reset all registrations on hot restart
+  if (getIt.isRegistered<bool>(instanceName: 'initialized')) {
+    // Already initialized, skip
     return;
   }
+  
+  getIt.registerSingleton<bool>(true, instanceName: 'initialized');
+
+  // Register SharedPreferences with retry for hot restart
+  SharedPreferences? sharedPreferences;
+  try {
+    sharedPreferences = await SharedPreferences.getInstance();
+  } catch (e) {
+    // Retry after a short delay (helps with hot restart)
+    await Future.delayed(const Duration(milliseconds: 100));
+    sharedPreferences = await SharedPreferences.getInstance();
+  }
+  getIt.registerSingleton<SharedPreferences>(sharedPreferences);
+
+  // Register AreaPreferences
+  getIt.registerSingleton<AreaPreferences>(
+    AreaPreferences(sharedPreferences),
+  );
 
   // Register config (environment-based)
   // Auto-detect: release builds use prod, debug builds use dev (or custom via FLAVOR)
@@ -424,16 +445,23 @@ void _registerUseCases() {
 void _registerBlocs() {
   final logger = getIt<AppLogger>();
 
-  // Area BLoC
-  getIt.registerLazySingleton<AreaBloc>(
+  // Area BLoC - Factory để tránh lỗi closed bloc khi hot restart
+  getIt.registerFactory<AreaBloc>(
     () => AreaBloc(
       getAreaTreeUseCase: getIt<GetAreaTreeWithCamerasUseCase>(),
       getAreaByIdUseCase: getIt<GetAreaByIdUseCase>(),
     ),
   );
 
-  // Camera Stream BLoC
-  getIt.registerLazySingleton<CameraStreamBloc>(
+  // Area Selection BLoC - Singleton vì cần giữ state giữa các màn hình
+  getIt.registerLazySingleton<AreaSelectionBloc>(
+    () => AreaSelectionBloc(
+      areaPreferences: getIt<AreaPreferences>(),
+    ),
+  );
+
+  // Camera Stream BLoC - Factory để tránh lỗi closed bloc
+  getIt.registerFactory<CameraStreamBloc>(
     () => CameraStreamBloc(
       getCameraStreamUseCase: getIt<GetCameraStreamUseCase>(),
     ),
@@ -489,28 +517,9 @@ void _registerBlocs() {
 
 /// Reset BLoC instances when logging out
 void resetBlocInstances() {
-  // Close and reset BLoCs that maintain state
-  if (getIt.isRegistered<AreaBloc>()) {
-    getIt<AreaBloc>().close();
-    getIt.unregister<AreaBloc>();
+  // Với registerFactory, không cần reset vì mỗi lần getIt<Bloc>() sẽ tạo instance mới
+  // Chỉ cần reset AreaSelectionBloc vì nó là singleton
+  if (getIt.isRegistered<AreaSelectionBloc>()) {
+    getIt<AreaSelectionBloc>().add(const ClearSelectedAreaEvent());
   }
-
-  if (getIt.isRegistered<CameraStreamBloc>()) {
-    getIt<CameraStreamBloc>().close();
-    getIt.unregister<CameraStreamBloc>();
-  }
-
-  // Re-register BLoCs with fresh instances
-  getIt.registerLazySingleton<AreaBloc>(
-    () => AreaBloc(
-      getAreaTreeUseCase: getIt<GetAreaTreeWithCamerasUseCase>(),
-      getAreaByIdUseCase: getIt<GetAreaByIdUseCase>(),
-    ),
-  );
-
-  getIt.registerLazySingleton<CameraStreamBloc>(
-    () => CameraStreamBloc(
-      getCameraStreamUseCase: getIt<GetCameraStreamUseCase>(),
-    ),
-  );
 }

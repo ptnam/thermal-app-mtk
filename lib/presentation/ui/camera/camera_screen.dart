@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:flutter_vision/core/constants/icons.dart';
-import 'package:flutter_vision/core/constants/colors.dart';
-import 'package:flutter_vision/presentation/widgets/app_drawer_service.dart';
+import 'package:camera_viewer/core/constants/icons.dart';
+import 'package:camera_viewer/core/constants/colors.dart';
+import 'package:camera_viewer/presentation/widgets/app_drawer_service.dart';
 
 import '../../../domain/entities/area_tree.dart';
 import '../../../domain/entities/camera_entity.dart';

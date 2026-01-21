@@ -7,7 +7,7 @@
 /// - Clean separation of URL construction logic
 /// =============================================================================
 
-import 'package:flutter_vision/data/network/core/endpoints.dart';
+import 'package:camera_viewer/data/network/core/endpoints.dart';
 
 /// Machine API endpoints
 class MachineEndpoints extends Endpoints {

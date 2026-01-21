@@ -15,7 +15,7 @@ if (keystorePropertiesFile.exists()) {
 }
 
 android {
-    namespace = "com.example.flutter_vision"
+    namespace = "com.example.camera_viewer"
     compileSdk = 36
     ndkVersion = "27.0.12077973"
 

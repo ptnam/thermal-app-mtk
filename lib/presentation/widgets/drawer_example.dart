@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_vision/presentation/widgets/app_drawer_service.dart';
+import 'package:camera_viewer/presentation/widgets/app_drawer_service.dart';
 
 /// Widget ví dụ cho cách sử dụng AppDrawerService
 /// Bạn có thể sử dụng trong bất kỳ màn hình nào

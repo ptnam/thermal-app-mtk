@@ -1,4 +1,4 @@
-package com.example.flutter_vision
+package com.example.camera_viewer
 
 import io.flutter.embedding.android.FlutterActivity
 

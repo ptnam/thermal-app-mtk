@@ -1,6 +1,6 @@
 {
-    "name": "flutter_vision",
-    "short_name": "flutter_vision",
+    "name": "camera_viewer",
+    "short_name": "camera_viewer",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

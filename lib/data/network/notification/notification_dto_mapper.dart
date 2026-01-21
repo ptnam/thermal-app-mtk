@@ -1,6 +1,6 @@
-import 'package:flutter_vision/data/network/notification/dto/notification_list_response_dto.dart';
-import 'package:flutter_vision/data/network/notification/dto/notification_detail_response_dto.dart';
-import 'package:flutter_vision/domain/entities/notification.dart';
+import 'package:camera_viewer/data/network/notification/dto/notification_list_response_dto.dart';
+import 'package:camera_viewer/data/network/notification/dto/notification_detail_response_dto.dart';
+import 'package:camera_viewer/domain/entities/notification.dart';
 
 class NotificationDtoMapper {
   static NotificationListEntity toDomainList(NotificationListResponseDto dto) {

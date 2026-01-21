@@ -5,18 +5,18 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "flutter_vision",
+            "name": "camera_viewer",
             "request": "launch",
             "type": "dart"
         },
         {
-            "name": "flutter_vision (profile mode)",
+            "name": "camera_viewer (profile mode)",
             "request": "launch",
             "type": "dart",
             "flutterMode": "profile"
         },
         {
-            "name": "flutter_vision (release mode)",
+            "name": "camera_viewer (release mode)",
             "request": "launch",
             "type": "dart",
             "flutterMode": "release"

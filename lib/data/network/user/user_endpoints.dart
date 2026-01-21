@@ -1,4 +1,4 @@
-import 'package:flutter_vision/data/network/core/endpoints.dart';
+import 'package:camera_viewer/data/network/core/endpoints.dart';
 
 /// =============================================================================
 /// File: user_endpoints.dart
